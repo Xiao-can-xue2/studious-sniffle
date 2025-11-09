@@ -1,0 +1,697 @@
+<section class="intro">
+  <h1>Hello，欢迎来到小澪的个人网站</h1>
+
+<h1 style="font-size: 15px; /* 可按需调整数值，默认h1约32px */
+           color: #B3E0FF; /* 可选：调整字体颜色 */
+           margin: 20px 0;">
+  春风若有怜花意，可否许我再少年
+</h1>
+
+<audio src="music.mp3" controls loop></audio>
+
+    
+  <p><section class="intro">
+  <h1>欢迎来到我的个人站点</h1>
+  <p>作为一名热衷编程与设计的学生和技术学习者我在这期待与更多志同道合的朋友交流分享</p>
+</section>
+<a href="https://github.com/xiao-can-xue2" target="_blank" rel="noreferrer" style="margin-right: 15px; color: #4285f4;">我的GitHub仓库</a>
+
+<a href="https://cn.pigame.cc/">秒玩小游戏</a>
+
+
+
+<style>
+.intro {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+.intro h1 {
+  color: #333;
+  margin-bottom: 15px;
+  font-size: 24px;
+}
+.intro p {
+  color: #666;
+  line-height: 1.6;
+  font-size: 16px;
+}
+</style>
+</p>
+  <div align="center">
+    <img src="a.jpg" alt="乐子大头" width="200"> <!-- 调整 width 控制显示大小 -->
+  </div>
+</section>
+
+<section style="max-width: 800px; margin: 30px auto; padding: 20px; background: #f8f9fa; border-radius: 8px;">
+  <h3 style="color: #4DB8FF; margin-bottom: 15px;">留言交流区</h3>
+  <textarea id="messageInput" placeholder="写下你的想法或建议..." style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 4px; margin-bottom: 10px; min-height: 80px;"></textarea>
+  <button onclick="addMessage()" style="padding: 8px 20px; background: #4DB8FF; color: white; border: none; border-radius: 4px; cursor: pointer;">提交留言</button>
+  <div id="messageList" style="margin-top: 20px; max-height: 300px; overflow-y: auto;"></div>
+
+  <script>
+    // 读取本地存储的留言
+    function loadMessages() {
+      const messages = JSON.parse(localStorage.getItem('siteMessages') || '[]');
+      const list = document.getElementById('messageList');
+      list.innerHTML = messages.map((msg, i) => `
+        <div style="padding: 10px; border-bottom: 1px dashed #eee; margin-bottom: 10px;">
+          <p style="margin: 0; color: #333;">${msg.content}</p>
+          <p style="margin: 5px 0 0; font-size: 12px; color: #999;">${msg.time}</p>
+        </div>
+      `).join('');
+    }
+
+    // 添加新留言
+    function addMessage() {
+      const input = document.getElementById('messageInput');
+      const content = input.value.trim();
+      if (!content) return alert('请输入留言内容~');
+      
+      const messages = JSON.parse(localStorage.getItem('siteMessages') || '[]');
+      messages.push({
+        content: content,
+        time: new Date().toLocaleString()
+      });
+      
+      localStorage.setItem('siteMessages', JSON.stringify(messages));
+      input.value = '';
+      loadMessages();
+    }
+
+    // 页面加载时读取留言
+    window.onload = loadMessages;
+  </script>
+</section>
+
+<section style="max-width: 800px; margin: 30px auto; padding: 20px; background: #f5f5f5; border-radius: 8px;">
+  <h3 style="color: #4DB8FF; margin-bottom: 15px;">技术代码分享</h3>
+  <div style="background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 6px; overflow-x: auto; font-family: 'Consolas', monospace; font-size: 14px; line-height: 1.6;">
+    <pre>// GitHub Pages 部署命令（常用）
+git add .
+git commit -m "更新网站内容"
+git push origin main
+
+// 简单的 HTTP 服务器（Python）
+python -m http.server 8080
+// 访问：http://localhost:8080</pre>
+  </div>
+  <button onclick="copyCode()" style="margin-top: 10px; padding: 6px 12px; background: #4DB8FF; color: white; border: none; border-radius: 4px; cursor: pointer;">复制代码</button>
+
+  <script>
+    function copyCode() {
+      const pre = document.querySelector('pre');
+      const text = pre.textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        alert('代码复制成功！');
+      }).catch(err => {
+        alert('复制失败，请手动复制~');
+      });
+    }
+  </script>
+</section>
+
+
+<section style="text-align: center; margin: 30px 0; padding: 20px; background: #E6F7FF; border-radius: 8px;">
+  <h3 style="color: #2563eb; margin-bottom: 15px;">距离成年还有</h3>
+  <div id="countdown" style="font-size: 20px; color: #333; font-weight: 600;"></div>
+
+  <script>
+    // 目标日期：修改为你的目标时间（年, 月-1, 日, 时, 分, 秒）
+    const targetDate = new Date(2028, 2, 1, 0, 0, 0);
+    
+    function updateCountdown() {
+      const now = new Date();
+      const diff = targetDate - now;
+      if (diff <= 0) {
+        document.getElementById('countdown').textContent = '我们18啦！🎉';
+        return;
+      }
+      
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+      
+      document.getElementById('countdown').textContent = 
+        `${days}天 ${hours}时 ${minutes}分 ${seconds}秒`;
+    }
+    
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+</section>
+
+<section style="max-width: 800px; margin: 30px auto;">
+  <h3 style="color: #4DB8FF; margin-bottom: 20px; text-align: center;">我的技术栈</h3>
+  <div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center;">
+    <!-- 技术卡片可按需添加/删除 -->
+    <div style="width: 120px; padding: 15px; background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); text-align: center;">
+      <div style="font-size: 30px; margin-bottom: 8px;">💻</div>
+      <div style="color: #333; font-size: 14px;">HTML/CSS</div>
+    </div>
+    <div style="width: 120px; padding: 15px; background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); text-align: center;">
+      <div style="font-size: 30px; margin-bottom: 8px;">⚙️</div>
+      <div style="color: #333; font-size: 14px;">电脑配置</div>
+    </div>
+    <div style="width: 120px; padding: 15px; background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); text-align: center;">
+      <div style="font-size: 30px; margin-bottom: 8px;">🐙</div>
+      <div style="color: #333; font-size: 14px;">GitHub</div>
+    </div>
+    <div style="width: 120px; padding: 15px; background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); text-align: center;">
+      <div style="font-size: 30px; margin-bottom: 8px;">🌐</div>
+      <div style="color: #333; font-size: 14px;">网站搭建</div>
+    </div>
+  </div>
+</section>
+
+<section style="max-width: 800px; margin: 30px auto; padding: 20px; background: #f8f9fa; border-radius: 8px;">
+  <h3 style="color: #4DB8FF; margin-bottom: 20px; text-align: center;">正常人小测验</h3>
+  <div id="quizContainer">
+    <!-- 题目1 -->
+    <div class="quiz-item" style="margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px dashed #eee;">
+      <p style="color: #333; margin-bottom: 10px; font-weight: 500;">1. 1+1=？</p>
+      <label style="display: block; margin-bottom: 8px; color: #4a5568;"><input type="radio" name="q1" value="a"> 2</label>
+      <label style="display: block; margin-bottom: 8px; color: #4a5568;"><input type="radio" name="q1" value="b"> 1</label>
+      <label style="display: block; margin-bottom: 8px; color: #4a5568;"><input type="radio" name="q1" value="c"> 3</label>
+    </div>
+    <!-- 题目2 -->
+    <div class="quiz-item" style="margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px dashed #eee;">
+      <p style="color: #333; margin-bottom: 10px; font-weight: 500;">2. 她爱你的概率是？</p>
+      <label style="display: block; margin-bottom: 8px; color: #4a5568;"><input type="radio" name="q2" value="a"> 99%</label>
+      <label style="display: block; margin-bottom: 8px; color: #4a5568;"><input type="radio" name="q2" value="b"> 无 %0都没有😥</label>
+      <label style="display: block; margin-bottom: 8px; color: #4a5568;"><input type="radio" name="q2" value="c"> 0.8%</label>
+    </div>
+    <button onclick="checkAnswer()" style="padding: 10px 20px; background: #4DB8FF; color: white; border: none; border-radius: 4px; cursor: pointer;">提交答案</button>
+    <div id="quizResult" style="margin-top: 15px; padding: 10px; border-radius: 4px; display: none;"></div>
+  </div>
+
+  <script>
+    function checkAnswer() {
+      const q1 = document.querySelector('input[name="q1"]:checked');
+      const q2 = document.querySelector('input[name="q2"]:checked');
+      const result = document.getElementById('quizResult');
+      
+      if (!q1 || !q2) {
+        result.textContent = '请完成所有题目再提交~';
+        result.style.backgroundColor = '#fff3cd';
+        result.style.color = '#856404';
+        result.style.display = 'block';
+        return;
+      }
+      
+      let score = 0;
+      if (q1.value === 'a') score++;
+      if (q2.value === 'b') score++;
+      
+      if (score === 2) {
+        result.innerHTML = '满分！🎉 是正常人';
+        result.style.backgroundColor = '#d4edda';
+        result.style.color = '#155724';
+      } else {
+        result.innerHTML = `得分：${score}/2 🌟 正确答案：1.A 2.她根本不爱你，继续加油！`;
+        result.style.backgroundColor = '#f8d7da';
+        result.style.color = '#721c24';
+      }
+      result.style.display = 'block';
+    }
+  </script>
+</section>
+
+<section style="max-width: 800px; margin: 30px auto; padding: 20px; background: #f8f9fa; border-radius: 8px;">
+  <h3 style="color: #4DB8FF; margin-bottom: 20px; text-align: center;">我的学习/项目进度</h3>
+  <div style="display: flex; flex-direction: column; gap: 15px;">
+    <!-- 进度条1 -->
+    <div>
+      <div style="display: flex; justify-content: space-between; margin-bottom: 5px; color: #333;">
+        <span>Web 开发进阶</span>
+        <span>5%</span>
+      </div>
+      <div style="width: 100%; height: 10px; background: #eee; border-radius: 5px; overflow: hidden;">
+        <div style="width: 5%; height: 100%; background: #4DB8FF; border-radius: 5px;"></div>
+      </div>
+    </div>
+    <!-- 进度条2 -->
+    <div>
+      <div style="display: flex; justify-content: space-between; margin-bottom: 5px; color: #333;">
+        <span>网络协议学习</span>
+        <span>10%</span>
+      </div>
+      <div style="width: 100%; height: 10px; background: #eee; border-radius: 5px; overflow: hidden;">
+        <div style="width: 10%; height: 100%; background: #80C0FF; border-radius: 5px;"></div>
+      </div>
+    </div>
+    <!-- 进度条3 -->
+    <div>
+      <div style="display: flex; justify-content: space-between; margin-bottom: 5px; color: #333;">
+        <span>GitHub 网站搭建</span>
+        <span>60%</span>
+      </div>
+      <div style="width: 100%; height: 10px; background: #eee; border-radius: 5px; overflow: hidden;">
+        <div style="width: 60%; height: 100%; background: #B3E0FF; border-radius: 5px;"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="max-width: 600px; margin: 30px auto; padding: 20px; background: #f8f9fa; border-radius: 8px;">
+  <h3 style="color: #4DB8FF; margin-bottom: 15px; text-align: center;">在线 IP 地址查询</h3>
+  <button onclick="getIPInfo()" style="padding: 10px 20px; background: #4DB8FF; color: white; border: none; border-radius: 4px; cursor: pointer; margin-bottom: 15px;">查询我的 IP 信息</button>
+  <div id="ipResult" style="text-align: center; color: #333; line-height: 1.8;"></div>
+
+  <script>
+    async function getIPInfo() {
+      const result = document.getElementById('ipResult');
+      result.textContent = '查询中...';
+      
+      try {
+        // 免费 IP 查询接口，无需 key
+        const res = await fetch('https://api.ipify.org?format=json');
+        const ipData = await res.json();
+        const ip = ipData.ip;
+        
+        const locationRes = await fetch(`https://ipapi.co/${ip}/json/`);
+        const locationData = await locationRes.json();
+        
+        result.innerHTML = `
+          <p>你的公网 IP：<strong>${locationData.ip}</strong></p>
+          <p>所在地区：${locationData.city} · ${locationData.region} · ${locationData.country_name}</p>
+          <p>运营商：${locationData.org}</p>
+          <p>经纬度：${locationData.latitude}, ${locationData.longitude}</p>
+        `;
+      } catch (err) {
+        result.textContent = '网安已介入，查询失败！！！';
+      }
+    }
+  </script>
+</section>
+
+<section style="max-width: 600px; margin: 30px auto; padding: 20px; background: #f8f9fa; border-radius: 8px;">
+  <h3 style="color: #4DB8FF; margin-bottom: 20px; text-align: center;">网络ip猜个数 🎮</h3>
+  <p style="text-align: center; color: #4a5568; margin-bottom: 15px;">猜猜 HTTP 协议默认ip地址（1-100 之间的整数）</p>
+  <div style="display: flex; gap: 10px; justify-content: center; margin-bottom: 15px;">
+    <input type="number" id="guessInput" min="1" max="100" placeholder="输入数字" style="padding: 10px; width: 120px; border: 1px solid #ddd; border-radius: 4px;">
+    <button onclick="guessNumber()" style="padding: 10px 20px; background: #4DB8FF; color: white; border: none; border-radius: 4px; cursor: pointer;">提交猜测</button>
+  </div>
+  <div id="guessTips" style="text-align: center; color: #333; font-weight: 500; margin-bottom: 10px;"></div>
+  <div style="text-align: center;">
+    <span id="guessCount" style="color: #666;">猜测次数：0</span>
+    <button onclick="resetGame()" style="margin-left: 15px; padding: 6px 12px; background: #eee; color: #333; border: none; border-radius: 4px; cursor: pointer;">重置游戏</button>
+  </div>
+
+  <script>
+    const targetNum = 80; // HTTP默认端口
+    let guessCount = 0;
+
+    function guessNumber() {
+      const input = document.getElementById('guessInput');
+      const tips = document.getElementById('guessTips');
+      const countText = document.getElementById('guessCount');
+      const num = parseInt(input.value.trim());
+
+      if (isNaN(num) || num < 1 || num > 100) {
+        tips.textContent = '请输入1-100之间的有效数字！';
+        tips.style.color = '#dc3545';
+        return;
+      }
+
+      guessCount++;
+      countText.textContent = `猜测次数：${guessCount}`;
+
+      if (num < targetNum) {
+        tips.textContent = '太小啦！再试试更大的数字~';
+        tips.style.color = '#ffc107';
+      } else if (num > targetNum) {
+        tips.textContent = '太大啦！再试试更小的数字~';
+        tips.style.color = '#ffc107';
+      } else {
+        tips.textContent = `恭喜猜对！🎉 HTTP默认ip就是${targetNum}，你用了${guessCount}次`;
+        tips.style.color = '#28a745';
+        input.disabled = true;
+      }
+      input.value = '';
+    }
+
+    function resetGame() {
+      guessCount = 0;
+      document.getElementById('guessInput').disabled = false;
+      document.getElementById('guessInput').value = '';
+      document.getElementById('guessTips').textContent = '';
+      document.getElementById('guessCount').textContent = '猜测次数：0';
+    }
+  </script>
+</section>
+
+<section style="max-width: 800px; margin: 30px auto; padding: 20px; background: #f8f9fa; border-radius: 8px; text-align: center;">
+  <h3 style="color: #4DB8FF; margin-bottom: 25px;">我的技术兴趣标签云 ☁️</h3>
+  <div id="tagCloud" style="display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; align-items: center;">
+    <!-- 标签会通过JS动态生成 -->
+  </div>
+
+  <script>
+    // 标签数据，可按需修改
+    const tags = [
+      { name: "HTML/CSS", size: 18, color: "#4DB8FF" },
+      { name: "JavaScript", size: 22, color: "#2563eb" },
+      { name: "计算机网络技术", size: 20, color: "#80C0FF" },
+      { name: "GitHub", size: 16, color: "#4DB8FF" },
+      { name: "计算机应用技术", size: 19, color: "#2563eb" },
+      { name: "1500米", size: 17, color: "#80C0FF" },
+      { name: "APK开发", size: 21, color: "#4DB8FF" },
+      { name: "服务器部署", size: 15, color: "#2563eb" },
+      { name: "800米", size: 14, color: "#80C0FF" },
+      { name: "1000米", size: 16, color: "#4DB8FF" },
+      { name: "API调用", size: 17, color: "#2563eb" },
+      { name: "羽毛球", size: 15, color: "#80C0FF" }
+    ];
+
+    const tagCloud = document.getElementById('tagCloud');
+    tags.forEach(tag => {
+      const tagElement = document.createElement('span');
+      tagElement.textContent = tag.name;
+      tagElement.style.fontSize = `${tag.size}px`;
+      tagElement.style.color = tag.color;
+      tagElement.style.padding = "6px 12px";
+      tagElement.style.borderRadius = "20px";
+      tagElement.style.background = "rgba(128, 192, 255, 0.1)";
+      tagElement.style.cursor = "pointer";
+      tagElement.style.transition = "all 0.3s ease";
+
+      // 鼠标悬浮效果
+      tagElement.addEventListener('mouseover', () => {
+        tagElement.style.transform = "scale(1.1)";
+        tagElement.style.background = "rgba(77, 184, 255, 0.2)";
+      });
+      tagElement.addEventListener('mouseout', () => {
+        tagElement.style.transform = "scale(1)";
+        tagElement.style.background = "rgba(128, 192, 255, 0.1)";
+      });
+
+      // 点击标签提示
+      tagElement.addEventListener('click', () => {
+        alert(`正在学习：${tag.name} 相关技术！`);
+      });
+
+      tagCloud.appendChild(tagElement);
+    });
+  </script>
+</section>
+
+<section style="max-width: 700px; margin: 30px auto; padding: 20px; background: #f8f9fa; border-radius: 8px;">
+  <h3 style="color: #4DB8FF; margin-bottom: 20px; text-align: center;">网络速度测试 🚀</h3>
+  <div style="text-align: center; margin-bottom: 15px;">
+    <button onclick="startSpeedTest()" style="padding: 10px 25px; background: #2563eb; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px;">开始测试</button>
+    <button onclick="stopSpeedTest()" style="margin-left: 10px; padding: 10px 25px; background: #dc3545; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px;">停止测试</button>
+  </div>
+  <div style="width: 100%; height: 20px; background: #eee; border-radius: 10px; overflow: hidden; margin-bottom: 15px;">
+    <div id="speedBar" style="width: 0%; height: 100%; background: linear-gradient(to right, #4DB8FF, #2563eb); transition: width 0.3s ease;"></div>
+  </div>
+  <div style="display: flex; justify-content: space-around; color: #333;">
+    <div>
+      <p style="font-size: 14px; color: #666;">下载速度</p>
+      <p id="downloadSpeed" style="font-size: 24px; font-weight: 600; color: #4DB8FF;">0 Mbps</p>
+    </div>
+    <div>
+      <p style="font-size: 14px; color: #666;">上传速度</p>
+      <p id="uploadSpeed" style="font-size: 24px; font-weight: 600; color: #2563eb;">0 Mbps</p>
+    </div>
+    <div>
+      <p style="font-size: 14px; color: #666;">延迟</p>
+      <p id="ping" style="font-size: 24px; font-weight: 600; color: #80C0FF;">-- ms</p>
+    </div>
+  </div>
+
+  <script>
+    let speedTestInterval;
+    let isTesting = false;
+    let downloadProgress = 0;
+    let uploadProgress = 0;
+
+    function startSpeedTest() {
+      if (isTesting) return;
+      isTesting = true;
+      downloadProgress = 0;
+      uploadProgress = 0;
+      document.getElementById('speedBar').style.width = '0%';
+      document.getElementById('ping').textContent = Math.floor(Math.random() * 30 + 10) + ' ms';
+
+      // 模拟速度增长
+      speedTestInterval = setInterval(() => {
+        if (downloadProgress < 100) {
+          downloadProgress += Math.random() * 5;
+          uploadProgress += Math.random() * 3;
+          if (downloadProgress > 100) downloadProgress = 100;
+          if (uploadProgress > 100) uploadProgress = 100;
+
+          document.getElementById('speedBar').style.width = `${downloadProgress}%`;
+          document.getElementById('downloadSpeed').textContent = Math.floor(downloadProgress / 5) + ' Mbps';
+          document.getElementById('uploadSpeed').textContent = Math.floor(uploadProgress / 6) + ' Mbps';
+        } else {
+          clearInterval(speedTestInterval);
+          isTesting = false;
+        }
+      }, 200);
+    }
+
+    function stopSpeedTest() {
+      clearInterval(speedTestInterval);
+      isTesting = false;
+    }
+  </script>
+</section>
+
+<section style="max-width: 800px; margin: 30px auto; padding: 20px; background: #f8f9fa; border-radius: 8px;">
+  <h3 style="color: #4DB8FF; margin-bottom: 20px; text-align: center;">技术问答互动墙 💬</h3>
+  <div style="margin-bottom: 20px;">
+    <textarea id="questionInput" placeholder="留下你的网络技术问题，我会回复哦~" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 4px; min-height: 80px; margin-bottom: 10px;"></textarea>
+    <button onclick="submitQuestion()" style="padding: 8px 20px; background: #4DB8FF; color: white; border: none; border-radius: 4px; cursor: pointer;">提交问题</button>
+  </div>
+  <div id="questionList" style="max-height: 400px; overflow-y: auto; gap: 15px; display: flex; flex-direction: column;">
+    <!-- 问答会动态生成 -->
+  </div>
+
+  <script>
+    // 预设一些问答（可自行修改）
+    const qaList = [
+      {
+        question: "HTTP 和 HTTPS 的区别是什么？",
+        answer: "HTTP 是明文传输，不安全；HTTPS 基于 TLS/SSL 加密，数据传输更安全。默认端口：HTTP 80，HTTPS 443。",
+        time: "2024-05-10"
+      },
+      {
+        question: "如何通过 GitHub Pages 部署网站？",
+        answer: "1. 创建名为 用户名.github.io 的仓库；2. 上传网站静态文件；3. 开启 Pages 功能，选择主分支；4. 等待几分钟即可访问。",
+        time: "2024-05-12"
+      }
+    ];
+
+    // 加载问答列表
+    function loadQuestions() {
+      const list = document.getElementById('questionList');
+      list.innerHTML = qaList.map((item, index) => `
+        <div style="padding: 15px; background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+            <span style="font-weight: 500; color: #333;">Q：${item.question}</span>
+            <span style="font-size: 12px; color: #999;">${item.time}</span>
+          </div>
+          <div style="padding-left: 10px; border-left: 3px solid #4DB8FF; color: #4a5568;">
+            A：${item.answer}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // 提交新问题
+    function submitQuestion() {
+      const input = document.getElementById('questionInput');
+      const question = input.value.trim();
+      if (!question) return alert('请输入你的问题~');
+
+      // 模拟回复（实际可手动添加真实答案）
+      qaList.unshift({
+        question: question,
+        answer: "感谢提问！我会尽快为你解答这个问题~",
+        time: new Date().toLocaleDateString()
+      });
+
+      input.value = '';
+      loadQuestions();
+    }
+
+    // 页面加载时初始化
+    window.onload = loadQuestions;
+  </script>
+</section>
+
+<section style="max-width: 600px; margin: 30px auto; padding: 20px; background: #f8f9fa; border-radius: 8px; text-align: center;">
+  <h3 style="color: #4DB8FF; margin-bottom: 25px;">技术名词打字机 ⌨️</h3>
+  <div style="font-size: 22px; color: #333; font-weight: 600; min-height: 30px; font-family: 'Consolas', monospace;">
+    <span id="typewriterText"></span>
+    <span style="animation: blink 1s infinite;">|</span>
+  </div>
+
+  <style>
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+  </style>
+
+  <script>
+    const texts = [
+      "我 喜欢 你",
+      "天天 开心",
+      "别 太 累 啦",
+      "注意 身体",
+      "别 熬 夜",
+      "好 好 休 息",
+      "早点 休息",
+      "要多 喝水",
+      "烦恼 全部 消失"
+    ];
+    const typewriterText = document.getElementById('typewriterText');
+    let currentTextIndex = 0;
+    let currentCharIndex = 0;
+    let isDeleting = false;
+
+    function type() {
+      const currentText = texts[currentTextIndex];
+      if (isDeleting) {
+        // 删除文字
+        typewriterText.textContent = currentText.substring(0, currentCharIndex - 1);
+        currentCharIndex--;
+      } else {
+        // 输入文字
+        typewriterText.textContent = currentText.substring(0, currentCharIndex + 1);
+        currentCharIndex++;
+      }
+
+      // 切换状态（输入完成→删除，删除完成→下一个文字）
+      if (!isDeleting && currentCharIndex === currentText.length) {
+        isDeleting = true;
+        setTimeout(type, 1500); // 停留1.5秒
+      } else if (isDeleting && currentCharIndex === 0) {
+        isDeleting = false;
+        currentTextIndex = (currentTextIndex + 1) % texts.length;
+        setTimeout(type, 500); // 切换间隔0.5秒
+      } else {
+        // 打字速度（删除更快）
+        const speed = isDeleting ? 80 : 150;
+        setTimeout(type, speed);
+      }
+    }
+
+    // 开始打字机效果
+    type();
+  </script>
+</section>
+
+
+<section style="width: 100%; height: 300px; background: #000; position: relative; margin: 30px 0; border-radius: 8px; overflow: hidden;">
+  <h3 style="position: absolute; top: 20px; left: 20px; color: white; z-index: 1; margin: 0;">嘉豪专属 🌧️</h3>
+  <div id="codeRain" style="width: 100%; height: 100%; position: relative;"></div>
+
+  <script>
+    const codeRain = document.getElementById('codeRain');
+    const chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ<>{}[]()+-*/=!@#$%^&*';
+    const columnWidth = 8; 
+    const columns = Math.floor(window.innerWidth / columnWidth); 
+    const drops = [];
+    const dropLengths = []; 
+
+    // 初始化雨滴（雨线更长，下落更慢）
+    for (let i = 0; i < columns; i++) {
+      drops[i] = Math.floor(Math.random() * 100); // 初始位置范围更大，雨线更早出现
+      dropLengths[i] = Math.floor(Math.random() * 20 + 10); // 雨线长度10-30个字符，更长
+      
+      const div = document.createElement('div');
+      div.style.position = 'absolute';
+      div.style.color = '#0f0';
+      div.style.fontSize = '12px';
+      div.style.left = `${i * columnWidth}px`;
+      div.style.top = '0';
+      div.style.lineHeight = '1'; 
+      codeRain.appendChild(div);
+    }
+
+    function draw() {
+      const divs = codeRain.querySelectorAll('div');
+      for (let i = 0; i < columns; i++) {
+        // 雨线超出屏幕后才重置，生命周期更长
+        if (drops[i] * 12 > window.innerHeight + dropLengths[i] * 12) {
+          drops[i] = 1;
+          dropLengths[i] = Math.floor(Math.random() * 20 + 10);
+        }
+
+        // 生成更长的雨线
+        let rainLine = '';
+        for (let j = 0; j < dropLengths[i]; j++) {
+          rainLine += chars[Math.floor(Math.random() * chars.length)];
+        }
+
+        divs[i].textContent = rainLine;
+        divs[i].style.top = `${drops[i] * 12}px`;
+        drops[i] += 0.6; // 下落速度减慢（原0.8→0.6），雨线停留更久
+      }
+      setTimeout(draw, 30); 
+    }
+
+    draw();
+
+    window.addEventListener('resize', () => {
+      codeRain.innerHTML = '';
+      location.reload();
+    });
+  </script>
+</section>
+
+<section style="max-width: 500px; margin: 30px auto; padding: 20px; background: #f8f9fa; border-radius: 8px;">
+  <h3 style="color: #4DB8FF; margin-bottom: 20px; text-align: center;">二进制转十进制计算器 🖩</h3>
+  <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+    <input type="text" id="binaryInput" placeholder="输入二进制数（仅0和1）" style="flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+    <button onclick="convertBinary()" style="padding: 10px 20px; background: #4DB8FF; color: white; border: none; border-radius: 4px; cursor: pointer;">转换</button>
+  </div>
+  <div style="padding: 15px; background: white; border-radius: 4px; border: 1px solid #eee; margin-bottom: 15px;">
+    <p style="color: #666; margin: 0 0 5px 0;">十进制结果：</p>
+    <p id="decimalResult" style="color: #333; font-size: 18px; margin: 0; font-weight: 500;">--</p>
+  </div>
+  <div style="text-align: center; font-size: 14px; color: #999;">
+    示例：输入 1010 → 输出 10；输入 1111 → 输出 15
+  </div>
+
+  <script>
+    function convertBinary() {
+      const input = document.getElementById('binaryInput').value.trim();
+      const resultElement = document.getElementById('decimalResult');
+
+      // 验证输入（仅0和1）
+      const binaryRegex = /^[01]+$/;
+      if (!binaryRegex.test(input)) {
+        resultElement.textContent = '错误：请输入有效的二进制数！';
+        resultElement.style.color = '#dc3545';
+        return;
+      }
+
+      // 转换为十进制
+      const decimal = parseInt(input, 2);
+      resultElement.textContent = decimal;
+      resultElement.style.color = '#333';
+
+      // 自动清空输入框（可选）
+      setTimeout(() => {
+        document.getElementById('binaryInput').value = '';
+      }, 2000);
+    }
+
+    // 支持回车触发转换
+    document.getElementById('binaryInput').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') convertBinary();
+    });
+  </script>
+</section>
+
+
+<a href="xx9.com">                            点击看片神器</a>
